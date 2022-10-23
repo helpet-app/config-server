@@ -1,0 +1,33 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  profiles:
+    active:
+      - vault
+      - git
+  cloud:
+    config:
+      server:
+        vault:
+          order: 1
+          kv-version: 2
+          host: ${VAULT_URI}
+          port: 8200
+          authentication: token
+          token: ${VAULT_TOKEN}
+          backend: kv
+          skip-ssl-validation: true
+        git:
+          order: 2
+          uri: ${GIT_URI}
+          clone-on-start: true
+          ignore-local-ssh-settings: true
+          host-key-algorithm: ecdsa-sha2-nistp256
+          host-key: ${GIT_HOST_KEY}
+          private-key: ${GIT_PRIVATE_KEY}
+
+encrypt:
+  key: ${ENCRYPTION_KEY}
