@@ -19,7 +19,6 @@ spring:
           authentication: token
           token: ${VAULT_TOKEN}
           backend: kv
-          skip-ssl-validation: true
         git:
           order: 2
           uri: ${GIT_URI}
