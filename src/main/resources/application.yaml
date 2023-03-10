@@ -14,11 +14,12 @@ spring:
         vault:
           order: 1
           kv-version: 2
-          host: ${VAULT_URI}
-          port: 8200
+          host: ${VAULT_HOST}
+          port: ${VAULT_PORT}
           authentication: token
           token: ${VAULT_TOKEN}
           backend: kv
+          profile-separator: '/'
         git:
           order: 2
           uri: ${GIT_URI}
@@ -27,6 +28,12 @@ spring:
           host-key-algorithm: ecdsa-sha2-nistp256
           host-key: ${GIT_HOST_KEY}
           private-key: ${GIT_PRIVATE_KEY}
+          search-paths:
+            - '{application}'
+  security:
+    user:
+      name: ${SERVER_USERNAME}
+      password: ${SERVER_PASSWORD}
 
 encrypt:
   key: ${ENCRYPTION_KEY}
