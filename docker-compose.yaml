@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  config-server:
+    image: ghcr.io/helpet-inc/config-server:0.0.1-SNAPSHOT
+    container_name: config-server
+    ports:
+      - '8888:8888'
+    env_file:
+      - .config-server.env
