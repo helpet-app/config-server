@@ -8,3 +8,4 @@ services:
       - '8888:8888'
     env_file:
       - .config-server.env
+    restart: always
